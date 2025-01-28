@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2>Dashboard</h2>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">API Anahtarları</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Aracı Kurum</th>
+                            <th>API Key</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for api_key in current_user.api_keys %}
+                        <tr>
+                            <td>{{ api_key.broker_name }}</td>
+                            <td>{{ api_key.api_key[:8] }}...</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm">Sil</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{{ url_for('add_api_key') }}" class="btn btn-primary">Yeni API Anahtarı Ekle</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Webhook URL'iniz</h5>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" value="{{ request.host_url }}webhook/{{ current_user.id }}" readonly>
+                    <button class="btn btn-outline-secondary" type="button" onclick="copyWebhookUrl()">Kopyala</button>
+                </div>
+                <small class="text-muted">Bu URL'i TradingView'deki alarm ayarlarınızda webhook URL'i olarak kullanın.</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function copyWebhookUrl() {
+    const webhookUrl = document.querySelector('input[readonly]');
+    webhookUrl.select();
+    document.execCommand('copy');
+    alert('Webhook URL kopyalandı!');
+}
+</script>
+{% endblock %}

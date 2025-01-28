@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Giriş Yap</h3>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Kullanıcı Adı</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Şifre</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                    <a href="{{ url_for('register') }}" class="btn btn-link">Hesabınız yok mu? Kayıt olun</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

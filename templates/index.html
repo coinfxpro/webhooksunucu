@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 mb-4">Trading Bridge</h1>
+            <p class="lead">
+                TradingView sinyallerinizi aracı kurumunuza otomatik olarak iletmek için güvenli bir köprü.
+            </p>
+            {% if not current_user.is_authenticated %}
+            <div class="mt-4">
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg me-3">Kayıt Ol</a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg">Giriş Yap</a>
+            </div>
+            {% else %}
+            <div class="mt-4">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Dashboard'a Git</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

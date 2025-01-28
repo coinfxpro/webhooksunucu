@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">API Anahtarı Ekle</h3>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="broker_name" class="form-label">Aracı Kurum</label>
+                        <input type="text" class="form-control" id="broker_name" name="broker_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="api_key" class="form-label">API Key</label>
+                        <input type="text" class="form-control" id="api_key" name="api_key" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="api_secret" class="form-label">API Secret</label>
+                        <input type="password" class="form-control" id="api_secret" name="api_secret" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ekle</button>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
